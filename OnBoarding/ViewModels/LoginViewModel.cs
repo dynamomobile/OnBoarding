@@ -4,7 +4,7 @@ using Realms.Sync;
 using Xamarin.Forms;
 namespace OnBoarding
 {
-	public class LoginViewModel : ViewModelBase,IPromptable<User>
+	public class LoginViewModel : ViewModelBase
 	{
 		public Command LoginCommand { get; }
 		private string _password;
@@ -47,8 +47,7 @@ namespace OnBoarding
 				var credentials = Credentials.UsernamePassword(Username, Password, false);
 				await User.LoginAsync(credentials, Constants.Server.AuthServerUri);
 				//var user = await User.LoginAsync(credentials, Constants.Server.AuthServerUri);
-				//Success(user);
-				NavigationService.SetMainPage<HomeViewModel>();
+				App.Current.MainPage = new NavigationPage(new HomePage());
 			}, onError: ex =>
 			{
 				// TODO: show alert.
@@ -57,16 +56,5 @@ namespace OnBoarding
 				HandleException(ex);
 			}, progressMessage: "Logging in...");
 		}
-
-
-		#region Promptable
-
-		public Action<User> Success { get; set; }
-
-		public Action Cancel { get; set; }
-
-		public Action<Exception> Error { get; set; }
-
-		#endregion
 	}
 }

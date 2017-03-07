@@ -29,7 +29,6 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
-    <EmbeddedResource Include="Views\OnBoardingPage.xaml" />
     <EmbeddedResource Include="Views\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -46,16 +45,9 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="Views\OnBoardingPage.xaml.cs">
-      <DependentUpon>OnBoardingPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="Views\PageBase.cs" />
     <Compile Include="Services\Implementation\DialogService.cs" />
-    <Compile Include="Services\Implementation\NavigationService.cs" />
-    <Compile Include="Services\Interfaces\IDBService.cs" />
     <Compile Include="Services\Interfaces\IDialogService.cs" />
-    <Compile Include="Services\Interfaces\INavigationService.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -64,7 +56,6 @@
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\HomeViewModel.cs" />
-    <Compile Include="Views\IPromptable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

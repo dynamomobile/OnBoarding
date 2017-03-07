@@ -15,9 +15,6 @@ namespace OnBoarding
 		private bool _isBusy;
 
 		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected INavigationService NavigationService => DependencyService.Get<INavigationService>(DependencyFetchTarget.GlobalInstance);
-
 		protected IDialogService DialogService => DependencyService.Get<IDialogService>(DependencyFetchTarget.GlobalInstance);
 
 		protected bool IsBusy

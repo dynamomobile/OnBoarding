@@ -7,8 +7,7 @@ namespace OnBoarding
 		public App()
 		{
 			InitializeComponent();
-			var navigationService = DependencyService.Get<INavigationService>(DependencyFetchTarget.GlobalInstance);
-			navigationService.SetMainPage<LoginViewModel>();
+			MainPage = new NavigationPage(new LoginPage());
 		}
 
 		protected override void OnStart()

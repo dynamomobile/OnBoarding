@@ -5,11 +5,11 @@ using Xamarin.Forms;
 
 namespace OnBoarding
 {
-	public partial class HomePage : PageBase
+	public partial class HomePage : ContentPage
 	{
 		private readonly Lazy<HomeViewModel> _typedViewModel = new Lazy<HomeViewModel>();
 
-		public override ViewModelBase ViewModel => _typedViewModel.Value;
+		public ViewModelBase ViewModel => _typedViewModel.Value;
 
 		public HomePage()
 		{
