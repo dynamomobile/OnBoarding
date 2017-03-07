@@ -44,6 +44,8 @@
     <Compile Include="Views\OnBoardingPage.xaml.cs">
       <DependentUpon>OnBoardingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\IDBService.cs" />
+    <Compile Include="Services\RealmDBService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

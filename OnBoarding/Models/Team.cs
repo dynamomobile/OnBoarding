@@ -10,6 +10,11 @@ namespace OnBoarding
 		public String name { get; set; }
 
 		public Company company { get; set; }
+		public IList<Employee> employees { get;}
+
+		[Backlink(nameof(Employee.teams))]
+		public IQueryable<Employee> teamEmployees { get; }
+
 		public Team()
 		{
 		}

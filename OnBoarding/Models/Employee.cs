@@ -11,7 +11,11 @@ namespace OnBoarding
 		public String fName { get; set; }
 		public String lName { get; set; }
 		public String phone { get; set; }
-		public Company company { get; set;}
+		public Company company { get; set; }
+		public IList<Team> teams { get;}
+
+		[Backlink(nameof(Team.employees))]
+		public IQueryable<Team> employeeTeams { get;}
 		public Employee()
 		{
 		}
