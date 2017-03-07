@@ -1,5 +1,5 @@
 ﻿using Xamarin.Forms;
-
+using OnBoarding;
 namespace OnBoarding
 {
 	public partial class App : Application
@@ -7,8 +7,8 @@ namespace OnBoarding
 		public App()
 		{
 			InitializeComponent();
-
-			MainPage = new OnBoardingPage();
+			var navigationService = DependencyService.Get<INavigationService>(DependencyFetchTarget.GlobalInstance);
+			navigationService.SetMainPage<LoginViewModel>();
 		}
 
 		protected override void OnStart()
