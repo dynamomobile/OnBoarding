@@ -87,6 +87,10 @@ namespace OnBoarding
 					HandleException(ex);
 				}
 			}
+			else
+			{
+				_realm = Realm.GetInstance();
+			}
 		}
 
 		protected virtual void OnBusyChanged()

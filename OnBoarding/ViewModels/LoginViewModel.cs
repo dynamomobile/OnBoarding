@@ -45,8 +45,10 @@ namespace OnBoarding
 			PerformTask(async () =>
 			{
 				var credentials = Credentials.UsernamePassword(Username, Password, false);
-				var user = await User.LoginAsync(credentials, Constants.Server.AuthServerUri);
-				Success(user);
+				await User.LoginAsync(credentials, Constants.Server.AuthServerUri);
+				//var user = await User.LoginAsync(credentials, Constants.Server.AuthServerUri);
+				//Success(user);
+				NavigationService.SetMainPage<HomeViewModel>();
 			}, onError: ex =>
 			{
 				// TODO: show alert.
