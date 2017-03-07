@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Acr.UserDialogs;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -15,6 +15,7 @@ namespace OnBoarding.Droid
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
+			UserDialogs.Init(this);
 			TabLayoutResource = Resource.Layout.Tabbar;
 			ToolbarResource = Resource.Layout.Toolbar;
 
