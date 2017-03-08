@@ -50,7 +50,7 @@ namespace OnBoarding
 			return false;
 		}
 
-		public void Initialize()
+		public virtual void Initialize()
 		{
 			if (!_initialized)
 			{
@@ -59,7 +59,7 @@ namespace OnBoarding
 			}
 		}
 
-		protected virtual void InitializeCore()
+		private void InitializeCore()
 		{
 			User user = null;
 
