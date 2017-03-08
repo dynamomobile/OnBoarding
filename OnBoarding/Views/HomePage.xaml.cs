@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Realms.Sync;
 using Xamarin.Forms;
+using Acr.Settings;
 
 namespace OnBoarding
 {
@@ -16,7 +17,7 @@ namespace OnBoarding
 			InitializeComponent();
 			ViewModel.Initialize();
 			BindingContext = ViewModel;
-			Title = Constants.email;
+			Title = Settings.Local.Get("EMAIL", "");
 		}
 	}
 }

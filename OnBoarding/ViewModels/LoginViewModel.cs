@@ -2,6 +2,7 @@
 using Realms;
 using Realms.Sync;
 using Xamarin.Forms;
+using Acr.Settings;
 namespace OnBoarding
 {
 	public class LoginViewModel : ViewModelBase
@@ -59,7 +60,7 @@ namespace OnBoarding
 					{
 						User.Current.GetManagementRealm().Add(permissionChange);
 					});
-					Constants.email = Username;
+					Settings.Local.SetValue("EMAIL", Username);
 				}
 				catch (Exception ex)
 				{
