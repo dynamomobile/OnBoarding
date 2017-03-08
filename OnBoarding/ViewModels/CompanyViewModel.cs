@@ -12,7 +12,6 @@ namespace OnBoarding
 		private string _companies = "";
 		private string _company = "";
 		private IQueryable<Company> RealmCompanies;
-		public event PropertyChangedEventHandler PropertyChanged;
 		public string Companies
 		{
 			get
@@ -69,7 +68,7 @@ namespace OnBoarding
 			}
 			if (_companies.Length > 0)
 			{
-				PropertyChanged(this,new PropertyChangedEventArgs("Companies"));
+				RaisePropertyChanged("Companies");
 			}
 		}
 
