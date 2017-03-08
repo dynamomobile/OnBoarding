@@ -45,11 +45,11 @@ namespace OnBoarding
 		public override void Initialize()
 		{
 			base.Initialize();
-			using (var trans = _realm.BeginWrite())
+			/*using (var trans = _realm.BeginWrite())
 			{
 				_realm.RemoveAll<Company>();
 				trans.Commit();
-			}
+			}*/
 			RealmCompanies = _realm.All<Company>();
 			RealmCompanies.SubscribeForNotifications((sender, changes, error) =>
 			{
