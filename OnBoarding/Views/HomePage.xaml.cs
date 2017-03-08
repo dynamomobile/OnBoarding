@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Realms.Sync;
 using Xamarin.Forms;
 
 namespace OnBoarding
@@ -16,6 +16,7 @@ namespace OnBoarding
 			InitializeComponent();
 			ViewModel.Initialize();
 			BindingContext = ViewModel;
+			Title = Constants.email;
 		}
 	}
 }

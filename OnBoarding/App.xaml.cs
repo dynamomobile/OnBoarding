@@ -9,14 +9,21 @@ namespace OnBoarding
 		public App()
 		{
 			InitializeComponent();
-			if (User.Current == null)
+			/*if (User.Current == null)
 			{
-				MainPage = new NavigationPage(new LoginPage());
+				User.Current.LogOut();
+				//MainPage = new NavigationPage(new LoginPage());
 			}
 			else
 			{
-				MainPage = new NavigationPage(new HomePage());
+				//MainPage = new NavigationPage(new HomePage());
+			}*/
+			foreach (User user in User.AllLoggedIn)
+			{
+				user.LogOut();
 			}
+
+			MainPage = new NavigationPage(new LoginPage());
 		}
 
 		protected override void OnStart()

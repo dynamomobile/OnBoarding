@@ -59,6 +59,7 @@ namespace OnBoarding
 					{
 						User.Current.GetManagementRealm().Add(permissionChange);
 					});
+					Constants.email = Username;
 				}
 				catch (Exception ex)
 				{
