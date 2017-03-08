@@ -72,7 +72,6 @@ namespace OnBoarding
 
 				DialogService.Alert("Unable to login", ex.Message);
 				HandleException(ex);
-				App.Current.MainPage = new NavigationPage(new HomePage());
 			}, progressMessage: "Logging in...");
 		}
 	}
