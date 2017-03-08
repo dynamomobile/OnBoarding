@@ -8,23 +8,11 @@ namespace OnBoarding
 {
 	public class MessageViewModel :ViewModelBase, INotifyPropertyChanged
 	{
-		public Command SendMessageCommand { get; }
 		public Command LogOutCommand { get; }
-		private string _messages = "";
-		private string _message = "";
-		private IQueryable<Message> RealmMessages;
 
-		public string Messages
-		{
-			get
-			{
-				return _messages;
-			}
-			set
-			{
-				Set(ref _messages, value);
-			}
-		}
+		private string _message = "";
+		private string _input = "";
+		private Message RealmMessage;
 
 		public string Message
 		{
@@ -38,53 +26,48 @@ namespace OnBoarding
 			}
 		}
 
+		public string Input
+		{
+			get
+			{
+				return _input;
+			}
+			set
+			{
+				Set(ref _input, value);
+			}
+		}
+
 		public MessageViewModel()
 		{
-			SendMessageCommand = new Command(SendMessage, () => !IsBusy);
 			LogOutCommand = new Command(logout, () => !IsBusy);
 		}
 
 		public override void Initialize()
 		{
 			base.Initialize();
-			/*using (var trans = _realm.BeginWrite())
+			RealmMessage = _realm.All<Message>().First();
+			if (RealmMessage == null)
 			{
-				_realm.RemoveAll<Company>();
-				trans.Commit();
-			}*/
-			RealmMessages = _realm.All<Message>();
-			RealmMessages.SubscribeForNotifications((sender, changes, error) =>
-			{
-				// Access changes.InsertedIndices, changes.DeletedIndices, and changes.ModifiedIndices
-				loadMessages();
-			});
-			loadMessages();
-		}
-
-		private void loadMessages()
-		{
-			_messages = "";
-			var temp = _realm.All<Message>();
-			foreach (var message in temp)
-			{
-				_messages = _messages + message.text + ", ";
+				using (var trans = _realm.BeginWrite())
+				{
+					RealmMessage = new Message();
+					_realm.Add(RealmMessage);
+					trans.Commit();
+				}
 			}
-			if (_messages.Length > 0)
+			RealmMessage.PropertyChanged += (sender, e) =>
 			{
-				RaisePropertyChanged("Messages");
-			}
+				loadMessage();
+			};
+			loadMessage();
 		}
-
-		private void SendMessage()
+		private void loadMessage()
 		{
 			try
 			{
-				_realm.Write(() =>
-				{
-					Message message = new Message();
-					message.text = _message;
-					_realm.Add(message, false);
-				});
+				_message = RealmMessage.text;
+				RaisePropertyChanged("Message");
 			}
 			catch (Exception ex)
 			{
@@ -99,6 +82,22 @@ namespace OnBoarding
 				user.LogOut();
 			}
 			App.Current.MainPage = new NavigationPage(new LoginPage());
+		}
+
+		public void OnValueChanged(object sender, Xamarin.Forms.TextChangedEventArgs args)
+		{
+			try
+			{
+				using (var trans = _realm.BeginWrite())
+				{
+					RealmMessage.text = args.NewTextValue;
+					trans.Commit();
+				}
+			}
+			catch (Exception ex)
+			{
+				DialogService.Alert("Error", ex.ToString());
+			}
 		}
 	}
 }

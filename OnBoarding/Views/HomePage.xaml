@@ -4,7 +4,5 @@
 	xmlns:local="clr-namespace:OnBoarding"
 	x:Class="OnBoarding.HomePage"
 	Title="Home">
-	<local:MessagesPage />
- 	<!--<local:CompanyPage />
- 	<local:CompanyPage />-->
+	<local:MessagePage />
 </TabbedPage>

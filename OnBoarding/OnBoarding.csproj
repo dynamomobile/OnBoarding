@@ -38,7 +38,7 @@
     <EmbeddedResource Include="Views\CompanyPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\MessagesPage.xaml">
+    <EmbeddedResource Include="Views\MessagePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -68,8 +68,8 @@
     <Compile Include="ViewModels\CompanyViewModel.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="ViewModels\MessageViewModel.cs" />
-    <Compile Include="Views\MessagesPage.xaml.cs">
-      <DependentUpon>MessagesPage.xaml</DependentUpon>
+    <Compile Include="Views\MessagePage.xaml.cs">
+      <DependentUpon>MessagePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
