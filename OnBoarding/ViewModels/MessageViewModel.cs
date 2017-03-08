@@ -9,6 +9,7 @@ namespace OnBoarding
 	public class MessageViewModel :ViewModelBase, INotifyPropertyChanged
 	{
 		public Command SendMessageCommand { get; }
+		public Command LogOutCommand { get; }
 		private string _messages = "";
 		private string _message = "";
 		private IQueryable<Message> RealmMessages;
@@ -40,6 +41,7 @@ namespace OnBoarding
 		public MessageViewModel()
 		{
 			SendMessageCommand = new Command(SendMessage, () => !IsBusy);
+			LogOutCommand = new Command(logout, () => !IsBusy);
 		}
 
 		public override void Initialize()
@@ -88,6 +90,15 @@ namespace OnBoarding
 			{
 				DialogService.Alert("Error", ex.ToString());
 			}
+		}
+
+		private void logout()
+		{
+			foreach (User user in User.AllLoggedIn)
+			{
+				user.LogOut();
+			}
+			App.Current.MainPage = new NavigationPage(new LoginPage());
 		}
 	}
 }

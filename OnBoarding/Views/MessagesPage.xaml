@@ -13,6 +13,7 @@
 			<Label Text="{Binding Messages}" FontSize="Large" Grid.Row = "1" Margin = "10"/>
             <Entry Placeholder = "" Text = "{Binding Message}" Grid.Row = "2" Margin = "10" />
 		<Button Text = "Send" Command = "{Binding SendMessageCommand}" Grid.Row = "3" Margin = "10" />
+			<Button Text = "Logout" Command = "{Binding LogOutCommand}" Grid.Row = "4" Margin = "10" />
 		</Grid>
 	</ContentPage.Content>
 </ContentPage>
