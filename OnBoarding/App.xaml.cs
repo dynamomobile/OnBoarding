@@ -1,5 +1,7 @@
 ﻿using Xamarin.Forms;
 using OnBoarding;
+using Realms;
+using Realms.Sync;
 namespace OnBoarding
 {
 	public partial class App : Application
@@ -7,7 +9,14 @@ namespace OnBoarding
 		public App()
 		{
 			InitializeComponent();
-			MainPage = new NavigationPage(new LoginPage());
+			if (User.Current == null)
+			{
+				MainPage = new NavigationPage(new LoginPage());
+			}
+			else
+			{
+				MainPage = new NavigationPage(new HomePage());
+			}
 		}
 
 		protected override void OnStart()

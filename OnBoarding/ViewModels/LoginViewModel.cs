@@ -47,6 +47,24 @@ namespace OnBoarding
 				var credentials = Credentials.UsernamePassword(Username, Password, false);
 				await User.LoginAsync(credentials, Constants.Server.AuthServerUri);
 				//var user = await User.LoginAsync(credentials, Constants.Server.AuthServerUri);
+				try
+				{
+					var permissionChange = new PermissionChange("*",
+					                                            "*",
+					                                            mayRead: true,
+					                                            mayWrite: true,
+					                                            mayManage: true);
+
+					User.Current.GetManagementRealm().Write(() =>
+					{
+						User.Current.GetManagementRealm().Add(permissionChange);
+					});
+				}
+				catch (Exception ex)
+				{
+					DialogService.Alert("Error", ex.ToString());
+				}
+
 				App.Current.MainPage = new NavigationPage(new HomePage());
 			}, onError: ex =>
 			{
@@ -54,6 +72,7 @@ namespace OnBoarding
 
 				DialogService.Alert("Unable to login", ex.Message);
 				HandleException(ex);
+				App.Current.MainPage = new NavigationPage(new HomePage());
 			}, progressMessage: "Logging in...");
 		}
 	}

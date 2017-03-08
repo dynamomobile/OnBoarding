@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<local:PageBase xmlns="http://xamarin.com/schemas/2014/forms"
-		     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:local="clr-namespace:OnBoarding;assembly=OnBoarding"
-		     x:Class="OnBoarding.HomePage"
-		     Title="Home">
-    <ContentPage.Content>
-    </ContentPage.Content>
-</local:PageBase>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:local="clr-namespace:OnBoarding"
+	x:Class="OnBoarding.HomePage"
+	Title="Home">
+	<local:CompanyPage />
+ 	<local:CompanyPage />
+ 	<local:CompanyPage />
+</TabbedPage>

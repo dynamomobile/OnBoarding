@@ -5,15 +5,14 @@ using Xamarin.Forms;
 
 namespace OnBoarding
 {
-	public partial class LoginPage : ContentPage
+	public partial class CompanyPage : ContentPage
 	{
-		private readonly Lazy<LoginViewModel> _typedViewModel = new Lazy<LoginViewModel>();
-
+		private readonly Lazy<CompanyViewModel> _typedViewModel = new Lazy<CompanyViewModel>();
 		public ViewModelBase ViewModel => _typedViewModel.Value;
-
-		public LoginPage()
+		public CompanyPage()
 		{
 			InitializeComponent();
+			Title = "Company";
 			ViewModel.Initialize();
 			BindingContext = ViewModel;
 		}

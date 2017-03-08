@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace OnBoarding
 {
-	public partial class HomePage : ContentPage
+	public partial class HomePage : TabbedPage
 	{
 		private readonly Lazy<HomeViewModel> _typedViewModel = new Lazy<HomeViewModel>();
 
@@ -14,7 +14,7 @@ namespace OnBoarding
 		public HomePage()
 		{
 			InitializeComponent();
-
+			ViewModel.Initialize();
 			BindingContext = ViewModel;
 		}
 	}
