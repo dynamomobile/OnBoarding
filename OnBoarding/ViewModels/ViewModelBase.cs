@@ -59,7 +59,7 @@ namespace OnBoarding
 			}
 		}
 
-		private void InitializeCore()
+		protected void InitializeCore()
 		{
 			User user = null;
 

@@ -4,6 +4,7 @@ using Realms.Sync;
 using Xamarin.Forms;
 using System.Linq;
 using System.ComponentModel;
+using System.Threading.Tasks;
 namespace OnBoarding
 {
 	public class MessageViewModel :ViewModelBase, INotifyPropertyChanged
@@ -46,32 +47,16 @@ namespace OnBoarding
 		public override void Initialize()
 		{
 			base.Initialize();
-			RealmMessage = _realm.All<Message>().First();
-			if (RealmMessage == null)
+			PerformTask(setupListener, (obj) =>
 			{
-				using (var trans = _realm.BeginWrite())
-				{
-					RealmMessage = new Message();
-					_realm.Add(RealmMessage);
-					trans.Commit();
-				}
-			}
-			RealmMessage.PropertyChanged += (sender, e) =>
-			{
-				loadMessage();
-			};
-			loadMessage();
+			});
 		}
 		private void loadMessage()
 		{
-			try
+			if (RealmMessage != null)
 			{
 				_message = RealmMessage.text;
 				RaisePropertyChanged("Message");
-			}
-			catch (Exception ex)
-			{
-				DialogService.Alert("Error", ex.ToString());
 			}
 		}
 
@@ -90,14 +75,33 @@ namespace OnBoarding
 			{
 				using (var trans = _realm.BeginWrite())
 				{
-					RealmMessage.text = args.NewTextValue;
+					_realm.All<Message>().First().text = args.NewTextValue;
 					trans.Commit();
 				}
 			}
 			catch (Exception ex)
 			{
-				DialogService.Alert("Error", ex.ToString());
+				//DialogService.Alert("Error", ex.ToString());
 			}
+		}
+
+		private async Task setupListener()
+		{
+			await Task.Delay(1000);
+
+			RealmMessage = _realm.All<Message>().First();
+			if (RealmMessage == null)
+			{
+				_realm.Write(() =>
+				{
+					RealmMessage = new Message();
+					_realm.Add(RealmMessage);
+				});
+			}
+			RealmMessage.PropertyChanged += (sender, e) =>
+			{
+				loadMessage();
+			};
 		}
 	}
 }

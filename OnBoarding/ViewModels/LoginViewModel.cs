@@ -66,7 +66,6 @@ namespace OnBoarding
 				{
 					DialogService.Alert("Error", ex.ToString());
 				}
-
 				App.Current.MainPage = new NavigationPage(new HomePage());
 			}, onError: ex =>
 			{

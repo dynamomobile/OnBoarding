@@ -8,17 +8,20 @@ namespace OnBoarding
 	public partial class MessagePage : ContentPage
 	{
 		private readonly Lazy<MessageViewModel> _typedViewModel = new Lazy<MessageViewModel>();
+		public MessageViewModel ViewModel => _typedViewModel.Value;
 		public MessagePage()
 		{
 			InitializeComponent();
 			Title = "Message";
-			_typedViewModel.Value.Initialize();
-			BindingContext = _typedViewModel.Value;
+			ViewModel.Initialize();
+			BindingContext = ViewModel;
 		}
+
+
 
 		void Handle_TextChanged(object sender, Xamarin.Forms.TextChangedEventArgs e)
 		{
-			_typedViewModel.Value.OnValueChanged(sender, e);
+			ViewModel.OnValueChanged(sender, e);
 		}
 	}
 }
