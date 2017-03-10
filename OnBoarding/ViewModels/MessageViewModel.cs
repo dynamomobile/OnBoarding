@@ -75,7 +75,7 @@ namespace OnBoarding
 			{
 				using (var trans = _realm.BeginWrite())
 				{
-					_realm.All<Message>().First().text = args.NewTextValue;
+					RealmMessage.text = args.NewTextValue;
 					trans.Commit();
 				}
 			}
